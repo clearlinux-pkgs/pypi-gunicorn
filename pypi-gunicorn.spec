@@ -5,13 +5,14 @@
 #
 Name     : pypi-gunicorn
 Version  : 21.2.0
-Release  : 1
+Release  : 2
 URL      : https://files.pythonhosted.org/packages/06/89/acd9879fa6a5309b4bf16a5a8855f1e58f26d38e0c18ede9b3a70996b021/gunicorn-21.2.0.tar.gz
 Source0  : https://files.pythonhosted.org/packages/06/89/acd9879fa6a5309b4bf16a5a8855f1e58f26d38e0c18ede9b3a70996b021/gunicorn-21.2.0.tar.gz
 Summary  : WSGI HTTP Server for UNIX
 Group    : Development/Tools
 License  : MIT
 Requires: pypi-gunicorn-bin = %{version}-%{release}
+Requires: pypi-gunicorn-license = %{version}-%{release}
 Requires: pypi-gunicorn-python = %{version}-%{release}
 Requires: pypi-gunicorn-python3 = %{version}-%{release}
 BuildRequires : buildreq-distutils3
@@ -31,9 +32,18 @@ testing -> Django 1.4
 %package bin
 Summary: bin components for the pypi-gunicorn package.
 Group: Binaries
+Requires: pypi-gunicorn-license = %{version}-%{release}
 
 %description bin
 bin components for the pypi-gunicorn package.
+
+
+%package license
+Summary: license components for the pypi-gunicorn package.
+Group: Default
+
+%description license
+license components for the pypi-gunicorn package.
 
 
 %package python
@@ -68,7 +78,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1689962959
+export SOURCE_DATE_EPOCH=1690914159
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -99,6 +109,9 @@ PYTHONPATH=%{buildroot}$(python -c "import sys; print(sys.path[-1])") python set
 %install
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/pypi-gunicorn
+cp %{_builddir}/gunicorn-%{version}/LICENSE %{buildroot}/usr/share/package-licenses/pypi-gunicorn/924d84267fe6376c699c87ac2f8b3fd4871b2250 || :
+cp %{_builddir}/gunicorn-%{version}/NOTICE %{buildroot}/usr/share/package-licenses/pypi-gunicorn/1d1d5f8c928d82f6e23789fb64067b38fd394cf5 || :
 python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
@@ -119,6 +132,11 @@ popd
 %files bin
 %defattr(-,root,root,-)
 /usr/bin/gunicorn
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/pypi-gunicorn/1d1d5f8c928d82f6e23789fb64067b38fd394cf5
+/usr/share/package-licenses/pypi-gunicorn/924d84267fe6376c699c87ac2f8b3fd4871b2250
 
 %files python
 %defattr(-,root,root,-)
