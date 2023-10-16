@@ -2,4 +2,5 @@
 pypi(cryptography)
 pypi(eventlet)
 pypi(gevent)
+pypi(greenlet)
 pypi(pytest_cov)
