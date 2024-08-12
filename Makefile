@@ -1,5 +1,5 @@
 PKG_NAME := pypi-gunicorn
-URL = https://files.pythonhosted.org/packages/1e/88/e2f93c5738a4c1f56a458fc7a5b1676fc31dcdbb182bef6b40a141c17d66/gunicorn-22.0.0.tar.gz
+URL = https://files.pythonhosted.org/packages/34/72/9614c465dc206155d93eff0ca20d42e1e35afc533971379482de953521a4/gunicorn-23.0.0.tar.gz
 ARCHIVES = 
 
 include ../common/Makefile.common
