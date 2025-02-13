@@ -7,7 +7,7 @@
 #
 Name     : pypi-gunicorn
 Version  : 23.0.0
-Release  : 28
+Release  : 29
 URL      : https://files.pythonhosted.org/packages/34/72/9614c465dc206155d93eff0ca20d42e1e35afc533971379482de953521a4/gunicorn-23.0.0.tar.gz
 Source0  : https://files.pythonhosted.org/packages/34/72/9614c465dc206155d93eff0ca20d42e1e35afc533971379482de953521a4/gunicorn-23.0.0.tar.gz
 Summary  : WSGI HTTP Server for UNIX
